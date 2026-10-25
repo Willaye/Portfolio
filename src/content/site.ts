@@ -15,7 +15,7 @@ const rawSite: Site = {
   brand: "Willaye Haider",
   wordmark: "Willaye",
   role: "Full-stack developer",
-  siteUrl: "https://willaye.dev",
+  siteUrl: "https://web-production-4a9c5.up.railway.app",
   location: "Pakistan · available worldwide (remote)",
   email: "willayedev@gmail.com",
   whatsapp: "923295323581",

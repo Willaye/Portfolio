@@ -62,7 +62,7 @@ export class ParticleEngine {
   private w = 0;
   private h = 0;
   private dpr = 1;
-  private accent = "#ff2d55";
+  private accent = "#d391b0";
 
   private px = 0; // eased pointer, normalized [-1,1]
   private py = 0;

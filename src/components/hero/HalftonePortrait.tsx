@@ -51,7 +51,7 @@ export default function HalftonePortrait({
     let w = 0;
     let h = 0;
     let dpr = 1;
-    let accent = "#ff2d55";
+    let accent = "#d391b0";
     let tx = -9999, ty = -9999, px = -9999, py = -9999;
     let raf = 0;
     let visible = true;

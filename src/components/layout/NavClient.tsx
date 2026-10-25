@@ -21,7 +21,7 @@ export function Clock() {
 
 /** Four accent swatches; persists choice in localStorage. */
 export function AccentSwitcher() {
-  const [active, setActive] = useState<AccentId>("crimson");
+  const [active, setActive] = useState<AccentId>("orchid");
   useEffect(() => setActive(readAccent()), []);
   return (
     <div className="swatches" role="group" aria-label="Accent colour">

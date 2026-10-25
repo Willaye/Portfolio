@@ -56,6 +56,7 @@ export const siteSchema = z.object({
   cv: z.object({
     headline: z.string(),
     summary: z.string(),
+    stack: z.array(z.object({ layer: z.string(), name: z.string(), items: z.array(z.string()) })).min(1),
     skills: z.array(z.object({ group: z.string(), items: z.array(z.string()) })),
     experience: z.array(
       z.object({ role: z.string(), org: z.string(), period: z.string(), points: z.array(z.string()) }),

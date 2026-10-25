@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export const viewport: Viewport = { themeColor: "#050507", colorScheme: "dark", width: "device-width", initialScale: 1, viewportFit: "cover" };
+export const viewport: Viewport = { themeColor: "#0c0420", colorScheme: "dark", width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      data-accent="crimson"
+      data-accent="orchid"
       className={`${archivo.variable} ${instrument.variable} ${geist.variable} ${geistMono.variable}`}
       suppressHydrationWarning
     >

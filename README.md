@@ -70,8 +70,8 @@ in the browser (downscaled and stored in `localStorage`) and **never uploaded an
 
 ### Accent themes
 
-Four presets (crimson, teal, violet, amber) switch live from the nav swatches and persist in
-`localStorage`. Change the default by editing `data-accent="crimson"` in `src/app/layout.tsx`.
+Four presets (orchid, teal, violet, amber) switch live from the nav swatches and persist in
+`localStorage`. Change the default by editing `data-accent="orchid"` in `src/app/layout.tsx`.
 
 ## The hero particle engine
 

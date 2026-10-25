@@ -55,7 +55,7 @@ export default function GlowPortrait({
     let w = 0,
       h = 0,
       dpr = 1;
-    let accent = "#ff2d55";
+    let accent = "#d391b0";
     let mx = -9999,
       my = -9999; // pointer (smoothed)
     let tmx = -9999,

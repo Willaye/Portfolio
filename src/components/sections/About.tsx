@@ -3,6 +3,7 @@ import { site } from "@/content/site";
 import { Reveal } from "@/components/ui/Reveal";
 import { Card } from "@/components/ui/Card";
 import { AboutPortrait } from "./AboutPortrait";
+import { StackFlow } from "./StackFlow";
 
 /** About + CV summary. The full printable CV lives at /cv. */
 export function About() {
@@ -33,10 +34,7 @@ export function About() {
             </h3>
             <div className="timeline">
               {cv.experience.map((x) => (
-                <div key={x.role + x.period} className="timeline-item">
-                  <span className="mono" style={{ color: "var(--a1)", paddingTop: 4 }}>
-                    {x.period}
-                  </span>
+                <div key={x.role + x.org} className="timeline-item">
                   <div>
                     <div style={{ fontWeight: 650, fontSize: 18 }}>{x.role}</div>
                     <div style={{ color: "var(--dim)" }}>{x.org}</div>
@@ -61,7 +59,14 @@ export function About() {
           </Reveal>
         </div>
 
-        <div className="grid grid-3" style={{ marginTop: 48 }}>
+        <Reveal style={{ marginTop: 56 }}>
+          <h3 className="mono" style={{ color: "var(--dim)", margin: "0 0 14px" }}>
+            Main tech stack
+          </h3>
+          <StackFlow />
+        </Reveal>
+
+        <div className="grid grid-3" style={{ marginTop: 24 }}>
           {cv.skills.map((g, i) => (
             <Reveal key={g.group} delay={(i % 3) * 80}>
               <Card className="h-full">

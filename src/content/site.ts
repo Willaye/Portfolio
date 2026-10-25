@@ -14,7 +14,7 @@ import { siteSchema, type Site } from "./schema";
 const rawSite: Site = {
   brand: "Willaye Haider",
   wordmark: "Willaye",
-  role: "Full-stack web app developer",
+  role: "Full-stack developer",
   siteUrl: "https://willaye.dev",
   location: "Pakistan · available worldwide (remote)",
   email: "willayedev@gmail.com",
@@ -30,10 +30,10 @@ const rawSite: Site = {
       "I'm a full-stack web app developer. I design and build complete products end to end, from clean React/Next.js frontends to solid APIs, databases and real-time dashboards, and ship them to production.",
     hint: "Click the visual to morph it. Photos you add stay in your browser and are never uploaded.",
     seoDescription:
-      "Willaye Haider is a full-stack web app developer building React/Next.js frontends, Node APIs, databases, real-time dashboards and AI features for the web.",
+      "Willaye Haider is a full-stack developer building Flutter apps, NestJS / Node.js APIs, PostgreSQL databases, real-time Socket.IO features and Next.js web apps.",
   },
 
-  marquee: ["Web apps", "SaaS", "Dashboards", "APIs", "Real-time", "AI features", "Next.js", "Node.js"],
+  marquee: ["Flutter", "NestJS", "PostgreSQL", "Socket.IO", "Web apps", "Dashboards", "Real-time", "Next.js", "Node.js"],
 
   services: [
     {
@@ -45,19 +45,19 @@ const rawSite: Site = {
     {
       title: "Backend & APIs",
       description: "Secure, well-structured APIs and server logic — my core strength as a backend developer.",
-      tags: ["Node.js", "REST", "Databases", "Auth"],
+      tags: ["NestJS", "Node.js", "TypeScript", "JWT"],
       visual: "servers",
     },
     {
       title: "Mobile apps (Flutter)",
       description: "Cross-platform iOS and Android apps from one Flutter codebase, so you launch sooner.",
-      tags: ["Flutter", "Dart", "Firebase"],
+      tags: ["Flutter", "Dart", "Riverpod", "Dio"],
       visual: "phone",
     },
     {
       title: "Databases & real-time",
       description: "Reliable data models plus live updates with WebSockets for real-time features.",
-      tags: ["PostgreSQL", "MongoDB", "WebSockets"],
+      tags: ["PostgreSQL", "Prisma", "Socket.IO", "WebSockets"],
       visual: "nodes",
     },
     {
@@ -76,43 +76,60 @@ const rawSite: Site = {
 
   projects: [
     {
-      title: "Orbit Monitor",
-      sector: "SaaS · Real-time dashboard",
+      title: "NOX",
+      sector: "Nationwide tracking · Flutter + NestJS",
       blurb:
-        "A real-time monitoring web app that tracks servers, APIs and services in one live dashboard, with alerts on WhatsApp and email.",
+        "A nationwide real-time tracking app: Flutter apps for target and admin devices, a NestJS backend with Socket.IO for live GPS across the country, WhatsApp capture, remote lock/unlock and instant alerts.",
       metrics: [
-        { value: "2M", label: "events / min" },
-        { value: "-38%", label: "infra cost" },
-        { value: "<1s", label: "data lag" },
+        { value: "18", label: "data models" },
+        { value: "24/7", label: "live tracking" },
+        { value: "<1s", label: "alert latency" },
       ],
-      tech: ["Next.js", "Node.js", "WebSockets", "ClickHouse"],
-      mockup: "laptop",
-    },
-    {
-      title: "Route Runner",
-      sector: "Mobile app · Flutter",
-      blurb:
-        "A cross-platform delivery app built with Flutter: live GPS tracking, optimised routes and proof of delivery, backed by a Node API.",
-      metrics: [
-        { value: "4.8", label: "store rating" },
-        { value: "35%", label: "faster routes" },
-        { value: "50k", label: "deliveries / mo" },
-      ],
-      tech: ["Flutter", "Dart", "Node.js", "PostgreSQL"],
+      tech: ["Flutter", "NestJS", "PostgreSQL", "Socket.IO"],
       mockup: "phone",
     },
     {
-      title: "Kiln & Co Store",
-      sector: "E-commerce · Web app",
-      blurb: "A headless storefront rebuilt for speed, with a checkout that converts on mobile.",
+      title: "BloodBridge",
+      sector: "Concept · Health · Mobile app",
+      blurb:
+        "Problem: families post urgent blood requests on WhatsApp and Facebook and wait hours for a donor. BloodBridge matches a request by blood group and distance, notifies nearby verified donors instantly, and tracks who is on the way. Donors get a 90-day cooldown so nobody is asked too soon.",
       metrics: [
-        { value: "+64%", label: "conversion" },
-        { value: "0.9s", label: "load time" },
-        { value: "3x", label: "revenue" },
+        { value: "8", label: "blood groups" },
+        { value: "10 km", label: "match radius" },
+        { value: "90 days", label: "donor cooldown" },
       ],
-      tech: ["Next.js", "Stripe", "Shopify API"],
-      mockup: "store",
+      tech: ["Flutter", "NestJS", "PostgreSQL", "Firebase FCM"],
+      mockup: "phone",
     },
+
+    {
+      title: "Pillpoint",
+      sector: "Concept · Health · Web app",
+      blurb:
+        "Problem: when a medicine is short, people drive from pharmacy to pharmacy asking for it. Pharmacies update their stock in Pillpoint, and patients search a medicine to see which nearby stores have it, the price, and the generic alternatives.",
+      metrics: [
+        { value: "Nearby", label: "stock search" },
+        { value: "Generic", label: "alternatives" },
+        { value: "Price", label: "comparison" },
+      ],
+      tech: ["Next.js", "NestJS", "PostgreSQL", "Google Maps"],
+      mockup: "store",
+    },    {
+      title: "ScamShield AI",
+      sector: "Concept · AI · Fraud protection",
+      blurb:
+        "Problem: people get fake 'Benazir program' and 'you won a prize' SMS, calls and WhatsApp messages, and end up sharing their money or OTP. With ScamShield AI, the user pastes a suspicious message or uploads a screenshot, and the AI says whether it is a scam and explains why in simple Urdu or English. Reported scams are added to a shared list so everyone else gets warned.",
+      metrics: [
+        { value: "SMS", label: "+ WhatsApp checks" },
+        { value: "Urdu", label: "+ English" },
+        { value: "Shared", label: "scam reports" },
+      ],
+      tech: ["Flutter", "Python", "FastAPI", "OpenAI API"],
+      mockup: "laptop",
+    },
+
+
+
   ],
 
   stats: [
@@ -181,16 +198,22 @@ const rawSite: Site = {
 
   /** Shown in the About / CV section and on the printable /cv page. */
   cv: {
-    headline: "Full-stack web app developer — React / Next.js, backend APIs and Flutter apps.",
+    headline: "Full-stack developer · Flutter, NestJS, PostgreSQL",
     summary:
-      "I'm Willaye Haider, a full-stack web app developer. I build fast React / Next.js websites and web apps, backend APIs (I worked for a year as a backend developer at Pixelizio), and cross-platform mobile apps with Flutter. I make both web and apps, and I care about performance, clean code and interfaces that feel effortless.",
+      "Full-stack developer with a BS in Computer Science from the University of Gujrat. I spent a year as a backend developer at Pixelizio, building APIs and database models with NestJS and PostgreSQL. I now freelance, working directly with clients on websites, web apps and Flutter mobile apps. Most of my recent work pairs a Flutter app with a NestJS backend and live updates over Socket.IO.",
+    /** The main stack, shown as App → Backend → Database on the site and the CV. */
+    stack: [
+      { layer: "App", name: "Flutter", items: ["Dart", "Riverpod", "GoRouter", "Dio HTTP"] },
+      { layer: "Backend", name: "NestJS", items: ["Node.js", "TypeScript", "Socket.IO", "JWT", "Multer"] },
+      { layer: "Database", name: "PostgreSQL", items: ["Prisma ORM", "Migrations", "Indexing"] },
+    ],
     skills: [
+      { group: "Mobile", items: ["Flutter", "Dart", "Riverpod", "GoRouter", "Dio HTTP", "Firebase"] },
+      { group: "Backend", items: ["Node.js", "NestJS", "TypeScript", "Express", "REST APIs", "JWT Auth", "Multer uploads"] },
+      { group: "Real-time", items: ["WebSockets", "Socket.IO", "Live dashboards"] },
+      { group: "Database", items: ["PostgreSQL", "Prisma ORM", "Migrations", "Indexing", "MongoDB", "MySQL"] },
       { group: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML / CSS"] },
-      { group: "Backend", items: ["Node.js", "Express", "REST APIs", "Auth", "WebSockets"] },
-      { group: "Mobile", items: ["Flutter", "Dart", "Firebase"] },
-      { group: "Databases", items: ["PostgreSQL", "MongoDB", "MySQL", "Prisma"] },
       { group: "Tools & Cloud", items: ["Git & GitHub", "Docker", "Vercel", "Linux", "CI/CD"] },
-      { group: "Also", items: ["Websites", "Dashboards", "UI / UX"] },
     ],
     experience: [
       {
@@ -205,7 +228,7 @@ const rawSite: Site = {
       {
         role: "Backend Developer",
         org: "Pixelizio",
-        period: "1 year",
+        period: "2025 – 2026",
         points: [
           "Worked for a year building and maintaining backend APIs, server-side logic and database models.",
           "Delivered and shipped web product features to production together with the team.",
@@ -213,7 +236,7 @@ const rawSite: Site = {
       },
       {
         role: "Intern — Government IT program",
-        org: "RP9, Khaian Kent",
+        org: "RP9, Kharian Cantt",
         period: "2023",
         points: [
           "Completed an internship in a government technology program.",
@@ -221,7 +244,7 @@ const rawSite: Site = {
         ],
       },
     ],
-    education: [{ title: "BS Computer Science", org: "University of Gujrat (UOG)", period: "" }],
+    education: [{ title: "BS Computer Science", org: "University of Gujrat (UOG)", period: "2021 – 2025" }],
     languages: ["English", "Urdu"],
   },
 

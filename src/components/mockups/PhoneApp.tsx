@@ -3,7 +3,7 @@ const phoneShell: React.CSSProperties = {
   aspectRatio: "9 / 19",
   borderRadius: "clamp(18px, 3vw, 30px)",
   border: "1px solid var(--line2)",
-  background: "#0b0b11",
+  background: "#120828",
   padding: "5%",
   boxShadow: "0 40px 80px -30px rgba(0,0,0,.85)",
   overflow: "hidden",

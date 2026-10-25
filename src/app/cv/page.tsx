@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
-import { site } from "@/content/site";
 import Link from "next/link";
-import { PrintButton } from "./PrintButton";
+import { site } from "@/content/site";
+import { Nav } from "@/components/layout/Nav";
+import { Footer } from "@/components/layout/Footer";
+import { Card } from "@/components/ui/Card";
+import { Reveal } from "@/components/ui/Reveal";
+import { StackFlow } from "@/components/sections/StackFlow";
+import { DownloadButton } from "./DownloadButton";
 
 export const metadata: Metadata = {
   title: "CV",
@@ -9,109 +14,192 @@ export const metadata: Metadata = {
   alternates: { canonical: "/cv" },
 };
 
-/** Printable one-page CV generated from content/site.ts. Use "Save as PDF" in the print dialog. */
 export default function CvPage() {
   const { cv } = site;
-  const h3 = { fontFamily: "var(--font-mono)", textTransform: "uppercase", letterSpacing: ".14em", fontSize: 12, color: "var(--a1)", margin: "32px 0 12px" } as const;
   return (
-    <main id="main" className="wrap cv" style={{ maxWidth: 900, paddingTop: 48, paddingBottom: 80 }}>
-      <div className="no-print flex flex-wrap justify-between gap-3" style={{ marginBottom: 40 }}>
-        <Link className="btn btn-sm" href="/">
-          ← Back to site
-        </Link>
-        <PrintButton />
-      </div>
-      <header
-        style={{
-          borderBottom: "1px solid var(--line2)",
-          paddingBottom: 24,
-          display: "flex",
-          alignItems: "center",
-          gap: "clamp(18px, 3vw, 36px)",
-          flexWrap: "wrap",
-        }}
-      >
-        {site.portrait && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={site.portrait}
-            alt={`Photo of ${site.brand}`}
-            width={132}
-            height={132}
-            style={{
-              width: "clamp(96px, 14vw, 132px)",
-              height: "clamp(96px, 14vw, 132px)",
-              borderRadius: 20,
-              objectFit: "cover",
-              border: "1px solid var(--line2)",
-              flex: "none",
-              WebkitPrintColorAdjust: "exact",
-              printColorAdjust: "exact",
-            }}
-          />
-        )}
-        <div style={{ minWidth: 0, flex: 1 }}>
-          <h1 className="display" style={{ fontSize: "clamp(40px, 8vw, 84px)", margin: 0 }}>
-            {site.brand}
-          </h1>
-          <p style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", fontSize: "clamp(18px, 2.4vw, 26px)", margin: "10px 0 6px" }}>
-            {cv.headline}
-          </p>
-          <p className="mono" style={{ color: "var(--dim)", margin: 0 }}>
-            {site.email} · {site.whatsappLabel} · {site.location} · {site.siteUrl.replace(/^https?:\/\//, "")}
-          </p>
-        </div>
-      </header>
+    <>
+      <Nav />
+      <main id="main" className="section" style={{ paddingTop: "calc(var(--nav-h) + 48px)" }}>
+        <div className="wrap">
+          {/* Header */}
+          <Reveal className="cv-hero">
+            <div className="cv-hero-left">
+              {site.portrait && (
+                <div className="cv-portrait">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={site.portrait} alt={`Photo of ${site.brand}`} />
+                </div>
+              )}
+            </div>
+            <div className="cv-hero-right">
+              <span className="eyebrow">Curriculum Vitae</span>
+              <h1 className="h2" style={{ marginTop: 12 }}>
+                {site.brand}
+              </h1>
+              <p className="lead" style={{ marginTop: 16 }}>
+                {cv.headline}
+              </p>
+              <ul className="cv-contact-row">
+                <li>
+                  <a href={`mailto:${site.email}`}>{site.email}</a>
+                </li>
+                <li>
+                  <a href={`https://wa.me/${site.whatsapp}`}>{site.whatsappLabel}</a>
+                </li>
+                <li>{site.location}</li>
+              </ul>
+              <div className="no-print flex flex-wrap gap-3" style={{ marginTop: 24 }}>
+                <DownloadButton />
+                <Link className="btn" href="/#contact">
+                  Hire me
+                </Link>
+              </div>
+            </div>
+          </Reveal>
 
-      <h2 style={h3}>Profile</h2>
-      <p style={{ margin: 0 }}>{cv.summary}</p>
+          {/* Profile */}
+          <Reveal>
+            <Card className="cv-card">
+              <h2 className="cv-section-title">Profile</h2>
+              <p className="cv-text">{cv.summary}</p>
+            </Card>
+          </Reveal>
 
-      <h2 style={h3}>Experience</h2>
-      {cv.experience.map((x) => (
-        <section key={x.role + x.period} style={{ marginBottom: 18 }}>
-          <div className="flex flex-wrap justify-between gap-2">
-            <strong>
-              {x.role} · {x.org}
-            </strong>
-            <span className="mono" style={{ color: "var(--dim)" }}>{x.period}</span>
-          </div>
-          <ul style={{ margin: "6px 0 0", paddingLeft: 18, color: "var(--dim)" }}>
-            {x.points.map((p) => (
-              <li key={p}>{p}</li>
+          {/* Tech Stack */}
+          <Reveal delay={60}>
+            <Card className="cv-card">
+              <h2 className="cv-section-title">Main Tech Stack</h2>
+              <StackFlow />
+            </Card>
+          </Reveal>
+
+          {/* Skills */}
+          <Reveal delay={80}>
+            <h2 className="cv-section-title" style={{ marginTop: 48, marginBottom: 20 }}>
+              Skills
+            </h2>
+          </Reveal>
+          <div className="grid grid-3">
+            {cv.skills.map((g, i) => (
+              <Reveal key={g.group} delay={(i % 3) * 60}>
+                <Card className="h-full">
+                  <h3>{g.group}</h3>
+                  <div className="tags">
+                    {g.items.map((s) => (
+                      <span key={s} className="tag">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </Card>
+              </Reveal>
             ))}
-          </ul>
-        </section>
-      ))}
-
-      <h2 style={h3}>Selected projects</h2>
-      {site.projects.map((p) => (
-        <p key={p.title} style={{ margin: "0 0 10px" }}>
-          <strong>{p.title}</strong> <span style={{ color: "var(--dim)" }}>({p.sector})</span>: {p.blurb}{" "}
-          <span style={{ color: "var(--dim)" }}>{p.tech.join(", ")}.</span>
-        </p>
-      ))}
-
-      <h2 style={h3}>Skills</h2>
-      <div style={{ display: "grid", gap: 6 }}>
-        {cv.skills.map((g) => (
-          <div key={g.group}>
-            <strong>{g.group}:</strong> <span style={{ color: "var(--dim)" }}>{g.items.join(", ")}</span>
           </div>
-        ))}
-      </div>
 
-      <h2 style={h3}>Education</h2>
-      {cv.education.map((e) => (
-        <div key={e.title} className="flex flex-wrap justify-between gap-2">
-          <span>
-            <strong>{e.title}</strong>, {e.org}
-          </span>
-          <span className="mono" style={{ color: "var(--dim)" }}>{e.period}</span>
+          {/* Experience */}
+          <Reveal delay={80}>
+            <h2 className="cv-section-title" style={{ marginTop: 48, marginBottom: 20 }}>
+              Experience
+            </h2>
+          </Reveal>
+          <div className="cv-timeline">
+            {cv.experience.map((x, i) => (
+              <Reveal key={x.role + x.org} delay={i * 60}>
+                <Card className="cv-exp-card">
+                  <h3 className="cv-exp-role">{x.role}</h3>
+                  <p className="cv-exp-org">
+                    {x.org}
+                    {x.period && <span className="cv-period"> · {x.period}</span>}
+                  </p>
+                  <ul className="cv-exp-points">
+                    {x.points.map((p) => (
+                      <li key={p}>{p}</li>
+                    ))}
+                  </ul>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Projects */}
+          <Reveal delay={80}>
+            <h2 className="cv-section-title" style={{ marginTop: 48, marginBottom: 20 }}>
+              Selected Projects
+            </h2>
+          </Reveal>
+          <div className="grid grid-2">
+            {site.projects.slice(0, 4).map((p, i) => (
+              <Reveal key={p.title} delay={(i % 2) * 60}>
+                <Card className="h-full">
+                  <h3 style={{ margin: 0 }}>{p.title}</h3>
+                  <p className="mono" style={{ color: "var(--a1)", margin: "6px 0 12px" }}>
+                    {p.sector}
+                  </p>
+                  <p style={{ color: "var(--dim)", margin: 0 }}>{p.blurb}</p>
+                  <div className="tags" style={{ marginTop: 14 }}>
+                    {p.tech.map((t) => (
+                      <span key={t} className="tag">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Education & Languages */}
+          <div className="grid grid-2" style={{ marginTop: 32 }}>
+            <Reveal>
+              <Card className="h-full">
+                <h2 className="cv-section-title" style={{ marginTop: 0 }}>
+                  Education
+                </h2>
+                {cv.education.map((e) => (
+                  <div key={e.title} style={{ marginTop: 12 }}>
+                    <strong>{e.title}</strong>
+                    <p style={{ color: "var(--dim)", margin: "4px 0 0" }}>
+                      {e.org}
+                      {e.period && <span className="cv-period"> · {e.period}</span>}
+                    </p>
+                  </div>
+                ))}
+              </Card>
+            </Reveal>
+            <Reveal delay={60}>
+              <Card className="h-full">
+                <h2 className="cv-section-title" style={{ marginTop: 0 }}>
+                  Languages
+                </h2>
+                <div className="tags" style={{ marginTop: 12 }}>
+                  {cv.languages.map((l) => (
+                    <span key={l} className="tag">
+                      {l}
+                    </span>
+                  ))}
+                </div>
+              </Card>
+            </Reveal>
+          </div>
+
+          {/* Socials */}
+          <Reveal>
+            <Card className="cv-card" style={{ marginTop: 32, textAlign: "center" }}>
+              <h2 className="cv-section-title" style={{ marginTop: 0 }}>
+                Connect
+              </h2>
+              <div className="flex flex-wrap justify-center gap-3" style={{ marginTop: 16 }}>
+                {site.socials.map((s) => (
+                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="btn btn-sm">
+                    {s.label}
+                  </a>
+                ))}
+              </div>
+            </Card>
+          </Reveal>
         </div>
-      ))}
-
-      <h2 style={h3}>Languages</h2>
-      <p style={{ margin: 0 }}>{cv.languages.join(", ")}</p>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }

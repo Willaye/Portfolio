@@ -1,5 +1,5 @@
 export const ACCENTS = [
-  { id: "crimson", label: "Crimson", a1: "#ff2d55", a2: "#ff8a3d" },
+  { id: "orchid", label: "Orchid", a1: "#d391b0", a2: "#ba6e8f" },
   { id: "teal", label: "Teal", a1: "#16d6c4", a2: "#4f8cff" },
   { id: "violet", label: "Violet", a1: "#9a6bff", a2: "#ff4fa3" },
   { id: "amber", label: "Amber", a1: "#ffb020", a2: "#ff5d2e" },
@@ -14,9 +14,9 @@ export const isAccent = (v: unknown): v is AccentId => ACCENTS.some((a) => a.id 
 export function readAccent(): AccentId {
   try {
     const v = localStorage.getItem(ACCENT_KEY);
-    return isAccent(v) ? v : "crimson";
+    return isAccent(v) ? v : "orchid";
   } catch {
-    return "crimson";
+    return "orchid";
   }
 }
 
